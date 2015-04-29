@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+    {% include "add_data.html"%}
+  {% endif %}
+  <table id="datasets" class="display">
+    <caption>Data Sets</caption>
+    <thead>
+      <tr>
+         <th>ShortName</th>
+         <th>WebSite</th>
+         <th>Category</th>
+      </tr>
+    </thead>
+    {% for entry in results%}
+    <tbody>
+        {% include "entry.html"%}    
+    </tbody>
+    {% endfor %}
+  </table>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#datasets').DataTable({
+        "paging":   true,
+        "ordering": true,
+        "info":     true
+    });
+} );
+</script>
+{% endblock %}
